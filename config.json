@@ -30,7 +30,7 @@
       "name": "VRtual Arena Zalău",
       "role": "Organizator principal",
       "icon": "VR",
-      "logo": "resources/vrtual_arena_logo.jpg",
+      "logo": "logo/vrtual_arena_logo.jpg",
       "url": "https://www.facebook.com/vrtualarena"
     },
     {
@@ -67,15 +67,34 @@
       "entryPrice": "",
       "vipPrice": "",
       "seats": "Limitate",
-      "categories": ["Începători", "Intermediari", "Avansați"],
+      "categories": [
+        "Începători",
+        "Intermediari",
+        "Avansați"
+      ],
       "prizes": [
-        { "category": "Total", "prize": "5000 lei (kendame KROM și bani)" }
+        {
+          "category": "Total",
+          "prize": "5000 lei (kendame KROM și bani)"
+        }
       ],
       "ticketCategories": [
-        { "category": "Începători", "price": "100 lei" },
-        { "category": "Intermediari", "price": "100 lei" },
-        { "category": "Avansați", "price": "100 lei" },
-        { "category": "Părinți (acces spectatori)", "price": "20 lei" }
+        {
+          "category": "Începători",
+          "price": "100 lei"
+        },
+        {
+          "category": "Intermediari",
+          "price": "100 lei"
+        },
+        {
+          "category": "Avansați",
+          "price": "100 lei"
+        },
+        {
+          "category": "Părinți (acces spectatori)",
+          "price": "20 lei"
+        }
       ],
       "importantNotes": [
         "Meet & greet inclus pentru toți participanții.",
@@ -95,15 +114,34 @@
       "entryPrice": "",
       "vipPrice": "",
       "seats": "Limitate",
-      "categories": ["Începători", "Intermediari", "Avansați"],
+      "categories": [
+        "Începători",
+        "Intermediari",
+        "Avansați"
+      ],
       "prizes": [
-        { "category": "General", "prize": "Premii în bani și kendame" }
+        {
+          "category": "General",
+          "prize": "Premii în bani și kendame"
+        }
       ],
       "ticketCategories": [
-        { "category": "Începători", "price": "100 lei" },
-        { "category": "Intermediari", "price": "100 lei" },
-        { "category": "Avansați", "price": "100 lei" },
-        { "category": "Părinți (acces spectatori)", "price": "20 lei" }
+        {
+          "category": "Începători",
+          "price": "100 lei"
+        },
+        {
+          "category": "Intermediari",
+          "price": "100 lei"
+        },
+        {
+          "category": "Avansați",
+          "price": "100 lei"
+        },
+        {
+          "category": "Părinți (acces spectatori)",
+          "price": "20 lei"
+        }
       ],
       "importantNotes": [
         "8 martie 2026, ora 13:00, Wonderland Cluj - Sala Mică.",
@@ -124,9 +162,17 @@
       "entryPrice": "",
       "vipPrice": "",
       "seats": "Limitate",
-      "categories": ["Începători", "Intermediari", "Avansați", "Free Style"],
+      "categories": [
+        "Începători",
+        "Intermediari",
+        "Avansați",
+        "Free Style"
+      ],
       "prizes": [
-        { "category": "General", "prize": "Premii în bani și kendame" }
+        {
+          "category": "General",
+          "prize": "Premii în bani și kendame"
+        }
       ],
       "notes": "Hunedoara se pregătește de CLASH.",
       "image": "resources/img1.jpg"
@@ -141,9 +187,14 @@
       "entryPrice": "În curând",
       "vipPrice": "În curând",
       "seats": "În curând",
-      "categories": ["În curând"],
+      "categories": [
+        "În curând"
+      ],
       "prizes": [
-        { "category": "General", "prize": "Urmează anunțul oficial" }
+        {
+          "category": "General",
+          "prize": "Urmează anunțul oficial"
+        }
       ],
       "notes": "Sibiu se pregătește de CLASH.",
       "image": "resources/img3.jpg"

@@ -170,6 +170,9 @@ function renderConfig(data) {
 
   const poster = document.getElementById("hero-poster");
   poster.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url('${data.hero.poster}')`;
+  poster.setAttribute("role", "button");
+  poster.tabIndex = 0;
+  poster.setAttribute("aria-label", "Deschide posterul principal");
 
   const ctaWrap = document.getElementById("hero-cta");
   data.hero.actions.forEach((action) => {
@@ -392,6 +395,14 @@ function renderConfig(data) {
     lightboxImage.alt = alt;
     lightbox.classList.add("open");
     lightbox.setAttribute("aria-hidden", "false");
+  };
+
+  poster.onclick = () => openLightbox(data.hero.poster, "Poster principal Kendama Clash");
+  poster.onkeydown = (evt) => {
+    if (evt.key === "Enter" || evt.key === " ") {
+      evt.preventDefault();
+      openLightbox(data.hero.poster, "Poster principal Kendama Clash");
+    }
   };
 
   lightboxClose.addEventListener("click", closeLightbox);

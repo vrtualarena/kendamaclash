@@ -315,7 +315,17 @@ h1 {
   box-shadow: var(--shadow);
   min-height: 340px;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(10, 6, 24, 0.92);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  cursor: zoom-in;
+}
+
+.hero-poster:hover {
+  transform: translateY(-3px) scale(1.01);
+  border-color: rgba(255, 213, 125, 0.58);
+  box-shadow: 0 14px 24px rgba(3, 2, 15, 0.5);
 }
 
 .partners,

@@ -1,75 +1,98 @@
 # Kendama Clash Landing Page
 
-Landing page static pentru `kendamaclash.ro`, pregatit pentru deploy gratuit pe GitHub Pages.
+Landing page static pentru `kendamaclash.ro`, pregătită pentru deploy gratuit pe GitHub Pages.
 
-## Structura
+## Structură
 
 - `index.html` - structura paginii
 - `styles.css` - stiluri
-- `app.js` - citeste `config.json` si randare dinamica
-- `config.json` - configuratie editabila (hero, parteneri, evenimente, social)
-- `resources/` - imagini promo
-- `atmosfera/` - imagini atmosfera evenimente
+- `app.js` - logică UI și randare dinamică din config
+- `config.json` - configurare editabilă (organizatori, parteneri, sponsori, evenimente, galerii, contact)
+- `resources/` - postere promo (`img1.jpg`, `img2.jpg` etc.)
+- `atmosfera/` - poze pentru caruselul „Atmosfera evenimentelor”
+- `logo/` - logo-uri pentru parteneri/sponsori
+- `scripts/sync-galleries.mjs` - script care actualizează automat galeriile în `config.json`
 
-## Cum personalizezi rapid
+## Configurare rapidă
 
-Editeaza doar `config.json`.
+Editezi `config.json`.
 
-### Eveniment nou
+### Organizatori
 
-Adauga un obiect nou in array-ul `events` cu campuri:
+Cheie: `organizers`
 
-- `city`
-- `venue`
-- `address`
-- `date` (`YYYY-MM-DD` sau gol daca urmeaza anunt)
-- `time` (`HH:mm`)
+Exemplu item:
+
+```json
+{
+  "name": "VRtual Arena Zalău",
+  "role": "Organizator principal",
+  "logo": "logo/vrtual_arena_logo.jpg",
+  "url": "https://www.facebook.com/vrtualarena"
+}
+```
+
+### Parteneri
+
+Cheie: `partners`
+
+Folosit pentru parteneri media/promovare.
+
+### Sponsori
+
+Cheie: `sponsors`
+
+Folosit pentru branduri cu contribuție financiară/materială.
+
+### Evenimente
+
+Cheie: `events`
+
+Câmpuri uzuale:
+
+- `city`, `venue`, `address`
+- `date` (`YYYY-MM-DD`), `time` (`HH:mm`)
 - `iabiletUrl`
-- `entryPrice`
-- `vipPrice`
 - `seats`
-- `categories` (lista)
-- `prizes` (lista de obiecte cu `category` + `prize`)
-- `ticketCategories` (lista de obiecte cu `category` + `price`)
-- `importantNotes` (lista de mentiuni importante)
+- `categories`
+- `prizes` (`category` + `prize`)
+- `ticketCategories` (`category` + `price`)
+- `importantNotes` (listă)
 - `notes`
 - `image`
 
-### Poze atmosfera
+## Galerie automată din directoare
 
-1. Pune pozele in folderul `atmosfera/` (ex: `atmosfera/poza1.jpg`).
-2. Adauga fisierele in `config.json`, in `atmosphereGallery`, de exemplu:
+Da, este automatizată prin script.
 
-```json
-"atmosphereGallery": [
-  "atmosfera/poza1.jpg",
-  "atmosfera/poza2.jpg"
-]
+Limitare importantă: pe GitHub Pages (site static) NU poți citi automat directoarele la runtime din browser.
+Soluția corectă este scriptul local care actualizează `config.json` înainte de push.
+
+Rulează:
+
+```bash
+node scripts/sync-galleries.mjs
 ```
 
-## Deploy pe GitHub Pages
+Ce face scriptul:
 
-## Varianta recomandata (repo dedicat)
+- actualizează `gallery` din `resources/` (fișiere `img*.jpg/png/...`)
+- actualizează `atmosphereGallery` din toate imaginile din `atmosfera/`
 
-1. Creeaza un repository GitHub nou, public, ex: `kendama-clash-landing`.
-2. Urca fisierele proiectului in branch-ul `main`.
-3. In GitHub: `Settings` -> `Pages`.
-4. La `Build and deployment` seteaza:
-   - `Source`: `Deploy from a branch`
-   - `Branch`: `main` + `/ (root)`
-5. Salveaza si asteapta 1-3 minute.
-6. URL-ul va fi de forma: `https://<user>.github.io/kendama-clash-landing/`.
+Flux recomandat:
 
-## Daca vrei domeniu custom (`kendamaclash.ro`)
+1. adaugi poze în directoare
+2. rulezi `node scripts/sync-galleries.mjs`
+3. commit + push
 
-1. In `Settings` -> `Pages` -> `Custom domain`, pune domeniul.
-2. In DNS provider adauga:
-   - `A` records catre IP-urile GitHub Pages
-   - sau `CNAME` catre `<user>.github.io` (pentru subdomenii)
-3. Bifeaza `Enforce HTTPS` dupa propagare.
+## Deploy GitHub Pages
 
-## Editari viitoare
+1. Push în `main`
+2. GitHub -> `Settings` -> `Pages`
+3. `Source: Deploy from a branch`
+4. `Branch: main` + `/ (root)`
+5. Save
 
-1. Modifici `config.json` (sau CSS/HTML).
-2. Commit + push in `main`.
-3. GitHub Pages publica automat update-ul.
+URL public:
+
+`https://<user>.github.io/<repo>/`
