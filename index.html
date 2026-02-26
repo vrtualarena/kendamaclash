@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kendama Clash România</title>
+    <meta
+      name="description"
+      content="Kendama Clash România - turneul de kendama cu premii, dueluri și respect câștigat pe scenă."
+    />
+    <link rel="icon" type="image/jpeg" href="resources/vrtual_arena_logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-layer"></div>
+    <nav class="top-nav">
+      <div class="top-nav-inner section">
+        <a class="brand-link" href="#acasa">
+          <img src="resources/vrtual_arena_logo.jpg" alt="VRtual Arena logo" class="brand-logo" width="24" height="24" />
+          <span>Kendama Clash <em>by VRtual Arena</em></span>
+        </a>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-label="Deschide meniul"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          ☰
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#organizatori">Organizatori</a>
+          <a href="#urmatoarele-evenimente">Următoarele evenimente</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#sponsori">Sponsori</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero section" id="acasa">
+      <div class="hero-content">
+        <p class="pill" id="hero-tagline"></p>
+        <h1 id="hero-title"></h1>
+        <p class="hero-subtitle" id="hero-subtitle"></p>
+
+        <div class="hero-meta">
+          <div class="meta-box">
+            <span class="meta-label">Orașe confirmate</span>
+            <strong id="confirmed-cities">-</strong>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">Premii în joc</span>
+            <strong id="prize-highlight">-</strong>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">Status</span>
+            <strong id="tickets-status">-</strong>
+          </div>
+        </div>
+
+        <div class="countdown-box" id="countdown-box" aria-live="polite">
+          <span class="countdown-kicker">Countdown Until Showdown</span>
+          <div class="countdown-label" id="countdown-label">
+            <span id="countdown-title">START IN --</span>
+            <span id="countdown-date">(--)</span>
+          </div>
+          <div class="countdown-grid">
+            <div class="count-unit">
+              <strong class="count-num" id="count-days">--</strong>
+              <span class="count-text">Zile</span>
+            </div>
+            <div class="count-unit">
+              <strong class="count-num" id="count-hours">--</strong>
+              <span class="count-text">Ore</span>
+            </div>
+            <div class="count-unit">
+              <strong class="count-num" id="count-minutes">--</strong>
+              <span class="count-text">Minute</span>
+            </div>
+            <div class="count-unit">
+              <strong class="count-num" id="count-seconds">--</strong>
+              <span class="count-text">Secunde</span>
+            </div>
+          </div>
+          <strong class="countdown-value" id="countdown-value">--</strong>
+        </div>
+
+        <div class="cta-row" id="hero-cta"></div>
+      </div>
+
+      <aside class="hero-poster" id="hero-poster"></aside>
+    </header>
+
+    <main>
+      <section class="section partners" id="organizatori">
+        <h2>Organizatori</h2>
+        <div class="partners-grid" id="organizers-list"></div>
+      </section>
+
+      <section class="section" id="urmatoarele-evenimente">
+        <div class="section-title-wrap">
+          <h2>Următoarele evenimente</h2>
+          <p>Locuri limitate. Pregătiți kendamele.</p>
+        </div>
+        <div class="events-grid" id="events-list"></div>
+      </section>
+
+      <section class="section gallery" id="galerie">
+        <div class="section-title-wrap">
+          <h2>Atmosfera evenimentelor Kendama Clash</h2>
+          <p>Momente din competiție, public și scenă.</p>
+        </div>
+        <div class="atmosphere-carousel" id="atmosphere-carousel">
+          <button class="carousel-btn" id="atmosphere-prev" aria-label="Imagine anterioară">‹</button>
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="atmosphere-gallery"></div>
+          </div>
+          <button class="carousel-btn" id="atmosphere-next" aria-label="Imagine următoare">›</button>
+        </div>
+        <div class="carousel-dots" id="atmosphere-dots"></div>
+      </section>
+
+      <section class="section gallery" id="postere-promovare">
+        <div class="section-title-wrap">
+        <h2>Postere de promovare</h2>
+        </div>
+        <div class="gallery-grid" id="promo-gallery"></div>
+      </section>
+
+      <section class="section partners" id="parteneri">
+        <h2>Parteneri</h2>
+        <p class="section-intro">
+          Partenerii noștri susțin energia Kendama Clash în fiecare oraș.
+        </p>
+        <div class="partners-grid" id="partners-list"></div>
+      </section>
+
+      <section class="section partners" id="sponsori">
+        <h2>Sponsori</h2>
+        <p class="section-intro">
+          Vrei să devii sponsor Kendama Clash? Contactează-ne și hai să construim împreună următoarea ediție.
+        </p>
+        <div class="partners-grid" id="sponsors-list"></div>
+      </section>
+
+      <section class="section follow" id="contact">
+        <h2>Urmărește anunțurile oficiale</h2>
+        <p id="follow-copy"></p>
+        <div class="contact-divider" aria-hidden="true"></div>
+        <h2 class="contact-subtitle">Contact</h2>
+        <p id="contact-copy"></p>
+        <div id="social-links" class="social-links"></div>
+      </section>
+    </main>
+
+    <footer class="section footer">
+      <p id="footer-tagline" class="footer-tagline"></p>
+      <p id="footer-copy"></p>
+    </footer>
+
+    <div class="lightbox" id="poster-lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Închide poster">×</button>
+      <img id="lightbox-image" alt="Poster de promovare Kendama Clash" />
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
