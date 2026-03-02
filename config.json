@@ -1,6 +1,17 @@
 {
   "site": {
-    "title": "Kendama Clash România"
+    "title": "Kendama Clash România",
+    "killSwitch": {
+      "enabled": true,
+      "kicker": "UNDER DEVELOPMENT",
+      "title": "Pregătim ceva frumos",
+      "message": "Site-ul este temporar în lucru. Revenim curând cu o versiune nouă, mai tare.",
+      "image": "resources/img-development.jpg"
+    },
+    "visibility": {
+      "showPartners": false,
+      "showSponsors": false
+    }
   },
   "hero": {
     "tagline": "Premii în bani și kendame",

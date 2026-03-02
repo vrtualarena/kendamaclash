@@ -3,11 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kendama Clash România</title>
+    <title>Kendama Clash România | Turneu și concurs kendama</title>
     <meta
       name="description"
-      content="Kendama Clash România - turneul de kendama cu premii, dueluri și respect câștigat pe scenă."
+      content="Kendama Clash România: turneu de kendama cu premii în bani, dueluri live și evenimente în Zalău, Cluj, Hunedoara și Sibiu."
     />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://kendamaclash.ro/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:site_name" content="Kendama Clash România" />
+    <meta property="og:title" content="Kendama Clash România | Turneu și concurs kendama" />
+    <meta
+      property="og:description"
+      content="Participă la Kendama Clash România: premii în bani, kendame KROM și evenimente în mai multe orașe."
+    />
+    <meta property="og:url" content="https://kendamaclash.ro/" />
+    <meta property="og:image" content="https://kendamaclash.ro/resources/img7.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kendama Clash România | Turneu și concurs kendama" />
+    <meta
+      name="twitter:description"
+      content="Turneu național de kendama cu premii, dueluri și bilete disponibile online."
+    />
+    <meta name="twitter:image" content="https://kendamaclash.ro/resources/img7.jpg" />
     <link rel="icon" type="image/jpeg" href="logo/vrtual_arena_logo.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,10 +36,46 @@
       href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260302-3" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kendama Clash România",
+        "url": "https://kendamaclash.ro/",
+        "logo": "https://kendamaclash.ro/logo/vrtual_arena_logo.jpg",
+        "sameAs": [
+          "https://www.facebook.com/vrtualarena",
+          "https://www.instagram.com/vrtual_arena"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kendama Clash România",
+        "url": "https://kendamaclash.ro/"
+      }
+    </script>
   </head>
   <body>
     <div class="bg-layer"></div>
+    <section class="maintenance-screen section" id="maintenance-screen">
+      <p class="maintenance-kicker" id="maintenance-kicker">UNDER DEVELOPMENT</p>
+      <img
+        class="maintenance-image"
+        id="maintenance-image"
+        src="resources/img-development.jpg"
+        alt="Kendama Clash în dezvoltare"
+        loading="eager"
+        decoding="async"
+      />
+      <h1 class="maintenance-title" id="maintenance-title">Pregătim ceva frumos</h1>
+      <p class="maintenance-message" id="maintenance-message">
+        Site-ul este temporar în lucru. Revenim curând cu o versiune mai bună.
+      </p>
+    </section>
     <nav class="top-nav">
       <div class="top-nav-inner section">
         <a class="brand-link" href="#acasa">
@@ -39,6 +96,7 @@
           <a href="#organizatori">Organizatori</a>
           <a href="#urmatoarele-evenimente">Următoarele evenimente</a>
           <a href="#galerie">Galerie</a>
+          <a href="#parteneri">Parteneri</a>
           <a href="#sponsori">Sponsori</a>
           <a href="#contact">Contact</a>
         </div>
@@ -47,22 +105,24 @@
 
     <header class="hero section" id="acasa">
       <div class="hero-content">
-        <p class="pill" id="hero-tagline"></p>
-        <h1 id="hero-title"></h1>
-        <p class="hero-subtitle" id="hero-subtitle"></p>
+        <p class="pill" id="hero-tagline">Premii în bani și kendame</p>
+        <h1 id="hero-title">Kendama Clash România</h1>
+        <p class="hero-subtitle" id="hero-subtitle">
+          Turneu de kendama cu dueluri live, competiții pe categorii și evenimente în mai multe orașe din România.
+        </p>
 
         <div class="hero-meta">
           <div class="meta-box">
             <span class="meta-label">Orașe confirmate</span>
-            <strong id="confirmed-cities">-</strong>
+            <strong id="confirmed-cities">Zalau, Cluj, Hunedoara, Sibiu</strong>
           </div>
           <div class="meta-box">
             <span class="meta-label">Premii în joc</span>
-            <strong id="prize-highlight">-</strong>
+            <strong id="prize-highlight">Premii în bani + Kendame</strong>
           </div>
           <div class="meta-box">
             <span class="meta-label">Status</span>
-            <strong id="tickets-status">-</strong>
+            <strong id="tickets-status">Locuri limitate</strong>
           </div>
         </div>
 
@@ -111,6 +171,15 @@
           <p>Locuri limitate. Pregătiți kendamele.</p>
         </div>
         <div class="events-grid" id="events-list"></div>
+        <noscript>
+          <article class="event-card">
+            <div class="event-body">
+              <div class="event-date">07 martie 2026, ora 14:00</div>
+              <h3 class="event-location">Zalău - VRtual Arena</h3>
+              <p>Bilete: https://m.iabilet.ro/bilete-zalau-kendama-clash-editia-a-3-a-122495</p>
+            </div>
+          </article>
+        </noscript>
       </section>
 
       <section class="section gallery" id="galerie">
@@ -171,6 +240,6 @@
       <img id="lightbox-image" alt="Poster de promovare Kendama Clash" />
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=20260302-4"></script>
   </body>
 </html>

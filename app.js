@@ -92,6 +92,146 @@ function formatRemaining(ms) {
   return { days, hours, minutes, seconds };
 }
 
+function toAbsoluteUrl(path) {
+  if (!path) return "https://kendamaclash.ro/";
+  if (/^https?:\/\//i.test(path)) return path;
+  const normalized = String(path).replace(/^\/+/, "");
+  return `https://kendamaclash.ro/${normalized}`;
+}
+
+function toEventStartDate(event) {
+  if (!event?.date) return null;
+  const time = event.time && event.time.trim() ? event.time.trim() : "00:00";
+  const candidate = new Date(`${event.date}T${time}:00+02:00`);
+  return Number.isNaN(candidate.getTime()) ? null : candidate.toISOString();
+}
+
+function injectStructuredData(data) {
+  const previous = document.getElementById("structured-events");
+  if (previous) previous.remove();
+
+  const validEvents = (data.events || []).filter((event) => event.date);
+  if (validEvents.length === 0) return;
+
+  const graph = validEvents.map((event) => {
+    const startDate = toEventStartDate(event);
+    return {
+      "@type": "Event",
+      name: `Kendama Clash ${event.city}`,
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      startDate,
+      location: {
+        "@type": "Place",
+        name: event.venue || event.city || "Locație în curs de anunțare",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: event.address || event.city || "România",
+          addressLocality: event.city || "România",
+          addressCountry: "RO"
+        }
+      },
+      image: [toAbsoluteUrl(event.image || data.hero?.poster)],
+      description: event.notes || data.hero?.subtitle || "Turneu Kendama Clash România",
+      organizer: {
+        "@type": "Organization",
+        name: "Kendama Clash România",
+        url: "https://kendamaclash.ro/"
+      },
+      offers: event.iabiletUrl
+        ? {
+            "@type": "Offer",
+            url: event.iabiletUrl,
+            availability: "https://schema.org/InStock",
+            priceCurrency: "RON"
+          }
+        : undefined
+    };
+  });
+
+  const script = document.createElement("script");
+  script.id = "structured-events";
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": graph
+  });
+  document.head.appendChild(script);
+}
+
+function isFeatureEnabled(value, defaultValue = true) {
+  if (value === undefined || value === null) return defaultValue;
+  if (typeof value === "boolean") return value;
+  if (typeof value === "number") return value !== 0;
+  if (typeof value === "string") {
+    const normalized = value.trim().toLowerCase();
+    if (["false", "0", "no", "off"].includes(normalized)) return false;
+    if (["true", "1", "yes", "on"].includes(normalized)) return true;
+  }
+  return Boolean(value);
+}
+
+function applyKillSwitch(data) {
+  const killSwitch = data?.site?.killSwitch;
+  const enabled = isFeatureEnabled(killSwitch?.enabled, false);
+
+  if (!enabled) {
+    document.body.classList.remove("maintenance-mode");
+    return false;
+  }
+
+  const title = safeText(killSwitch.title, "Site în dezvoltare");
+  const message = safeText(
+    killSwitch.message,
+    "Site-ul este temporar în lucru. Revenim curând cu ceva frumos."
+  );
+  const kicker = safeText(killSwitch.kicker, "UNDER DEVELOPMENT");
+  const maintenanceImage = safeText(killSwitch.image, "resources/img-development.jpg");
+  const screen = document.getElementById("maintenance-screen");
+  if (!screen) return false;
+
+  const titleEl = document.getElementById("maintenance-title");
+  const messageEl = document.getElementById("maintenance-message");
+  const kickerEl = document.getElementById("maintenance-kicker");
+  const imageEl = document.getElementById("maintenance-image");
+
+  if (titleEl) titleEl.textContent = title;
+  if (messageEl) messageEl.textContent = message;
+  if (kickerEl) kickerEl.textContent = kicker;
+  if (imageEl instanceof HTMLImageElement) {
+    imageEl.src = maintenanceImage;
+    imageEl.onerror = () => {
+      imageEl.onerror = null;
+      imageEl.src = "resources/img7.jpg";
+    };
+  }
+
+  document.title = title;
+  document.body.classList.add("maintenance-mode");
+  return true;
+}
+
+function applySectionVisibility(data) {
+  const visibility = data?.site?.visibility || {};
+  const rules = [
+    { id: "parteneri", visible: isFeatureEnabled(visibility.showPartners, true) },
+    { id: "sponsori", visible: isFeatureEnabled(visibility.showSponsors, true) }
+  ];
+
+  rules.forEach(({ id, visible }) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.hidden = !visible;
+    }
+
+    document.querySelectorAll(`a[href="#${id}"]`).forEach((link) => {
+      if (link instanceof HTMLElement) {
+        link.hidden = !visible;
+      }
+    });
+  });
+}
+
 function setupCountdown(events) {
   const title = document.getElementById("countdown-title");
   const dateLine = document.getElementById("countdown-date");
@@ -160,7 +300,8 @@ function setupCountdown(events) {
 }
 
 function renderConfig(data) {
-  document.title = safeText(data.site.title, "Kendama Clash România");
+  const siteTitle = safeText(data.site.title, "Kendama Clash România");
+  document.title = siteTitle.includes("|") ? siteTitle : `${siteTitle} | Turneu și concurs kendama`;
   document.getElementById("hero-tagline").textContent = safeText(data.hero.tagline);
   document.getElementById("hero-title").textContent = safeText(data.hero.title);
   document.getElementById("hero-subtitle").textContent = safeText(data.hero.subtitle);
@@ -533,17 +674,24 @@ function renderConfig(data) {
 
   document.getElementById("footer-tagline").textContent = safeText(data.footer.tagline, "");
   document.getElementById("footer-copy").textContent = safeText(data.footer.copy);
+
+  injectStructuredData(data);
 }
 
 async function init() {
   try {
-    setupMobileMenu();
     const response = await fetch("config.json", { cache: "no-store" });
     if (!response.ok) {
       throw new Error(`Nu pot citi config.json (${response.status})`);
     }
 
     const data = await response.json();
+    if (applyKillSwitch(data)) {
+      return;
+    }
+
+    applySectionVisibility(data);
+    setupMobileMenu();
     renderConfig(data);
   } catch (error) {
     const title = document.getElementById("hero-title");
