@@ -63,7 +63,7 @@
       "address": "Str. Gheorghe Doja 153",
       "date": "2026-03-07",
       "time": "14:00",
-      "iabiletUrl": "https://m.iabilet.ro/bilete-zalau-kendama-clash-editia-a-3-a/",
+      "iabiletUrl": "https://m.iabilet.ro/bilete-zalau-kendama-clash-editia-a-3-a-122495",
       "entryPrice": "",
       "vipPrice": "",
       "seats": "Limitate",
@@ -110,7 +110,7 @@
       "address": "Wonderland Cluj - Sala Mică, Cluj-Napoca",
       "date": "2026-03-08",
       "time": "13:00",
-      "iabiletUrl": "https://m.iabilet.ro/bilete-cluj-napoca-kendama-clash/",
+      "iabiletUrl": "https://m.iabilet.ro/bilete-cluj-napoca-kendama-clash-123791",
       "entryPrice": "",
       "vipPrice": "",
       "seats": "Limitate",
@@ -150,7 +150,7 @@
         "Locuri limitate."
       ],
       "notes": "Cluj, e rândul vostru. Pregătiți kendamele.",
-      "image": "resources/img2.jpg"
+      "image": "resources/img-generic.jpg"
     },
     {
       "city": "Hunedoara",
@@ -172,6 +172,24 @@
         {
           "category": "General",
           "prize": "Premii în bani și kendame"
+        }
+      ],
+      "ticketCategories": [
+        {
+          "category": "Începători",
+          "price": "100 lei"
+        },
+        {
+          "category": "Intermediari",
+          "price": "100 lei"
+        },
+        {
+          "category": "Avansați",
+          "price": "100 lei"
+        },
+        {
+          "category": "Părinți (acces spectatori)",
+          "price": "20 lei"
         }
       ],
       "notes": "Hunedoara se pregătește de CLASH.",
@@ -197,7 +215,7 @@
         }
       ],
       "notes": "Sibiu se pregătește de CLASH.",
-      "image": "resources/img3.jpg"
+      "image": "resources/img-generic.jpg"
     }
   ],
   "gallery": [
